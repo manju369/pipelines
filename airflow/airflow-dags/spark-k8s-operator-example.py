@@ -66,8 +66,15 @@ submit = SparkKubernetesOperator(
     application_file="example_spark_kubernetes_operator_pi.yaml",
     kubernetes_conn_id="kubernetes_default",
     do_xcom_push=True,
-    attach_log=True,
     dag=dag,
     )
 
-dummy_start >>  submit >> dummy_end
+t2 = SparkKubernetesSensor(
+   task_id='spark_pi_monitor',
+   namespace="default",
+   application_name="{{ task_instance.xcom_pull(task_ids='spark_pi_submit')['metadata']['name'] }}",
+   dag=dag,
+   attach_log=True,
+)
+
+dummy_start >>  submit >> t2 >> dummy_end
