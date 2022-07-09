@@ -66,6 +66,7 @@ submit = SparkKubernetesOperator(
     application_file="example_spark_kubernetes_operator_pi.yaml",
     kubernetes_conn_id="kubernetes_default",
     do_xcom_push=True,
+    attach_log=True,
     dag=dag,
     
 )
