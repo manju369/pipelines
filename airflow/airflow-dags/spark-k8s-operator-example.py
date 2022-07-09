@@ -67,8 +67,7 @@ submit = SparkKubernetesOperator(
     kubernetes_conn_id="kubernetes_default",
     do_xcom_push=True,
     attach_log=True,
-    dag=dag,
-    
-)
+    dag=dag
+    )
 
 dummy_start >>  submit >> dummy_end
