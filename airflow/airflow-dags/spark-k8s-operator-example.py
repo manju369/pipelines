@@ -62,7 +62,8 @@ dummy_end = DummyOperator(
 
 submit = SparkKubernetesOperator(
     task_id='spark_pi_submit',
-    namespace="default",
+    #namespace="default",
+    namespace="spark-operator",
     application_file="example_spark_kubernetes_operator_pi.yaml",
     kubernetes_conn_id="kubernetes_default",
     do_xcom_push=True,
@@ -71,7 +72,8 @@ submit = SparkKubernetesOperator(
 
 t2 = SparkKubernetesSensor(
    task_id='spark_pi_monitor',
-   namespace="default",
+   #namespace="default",
+   namespace="spark-operator",
    application_name="{{ task_instance.xcom_pull(task_ids='spark_pi_submit')['metadata']['name'] }}",
    dag=dag,
    attach_log=True,
