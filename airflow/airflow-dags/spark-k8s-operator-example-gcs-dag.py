@@ -74,7 +74,7 @@ t2 = SparkKubernetesSensor(
    task_id='spark_pi_monitor_gcs',
    #namespace="default",
    namespace="spark-operator",
-   application_name="{{ task_instance.xcom_pull(task_ids='spark_pi_submit')['metadata']['name'] }}",
+   application_name="{{ task_instance.xcom_pull(task_ids='spark_pi_submit_gcs')['metadata']['name'] }}",
    dag=dag,
    attach_log=True,
 )
