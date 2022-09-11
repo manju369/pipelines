@@ -3,7 +3,8 @@ kind: SparkApplication
 metadata:
   #name: spark-pi
   name: "spark-pi-{{ macros.datetime.now().strftime("%Y-%m-%d-%H-%M-%S") }}-{{ task_instance.try_number }}"
-  namespace: default
+  #namespace: default
+  namespace: spark-operator
 spec:
   type: Scala
   mode: cluster
